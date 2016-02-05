@@ -1,25 +1,17 @@
 <!DOCTYPE html>
-<html ng-app="SampleApp">
-  <head lang="en">
+<html ng-app="app">
+<head lang="en">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Angular-Gulp-Browserify-Starter</title>
+    <title>Address book</title>
     <!-- styles -->
     <link rel="stylesheet" href="./css/main.css"/>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Angular-Gulp-Browserify-Starter</h1>
-      <!-- views -->
-      <div ui-view="leftPanel"></div>
-      <div ui-view="rightPanel"></div>
-      <!-- We'll also add some navigation: -->
-      <a ui-sref="index">Index</a>
-      <a ui-sref="add">Add</a>
-    </div>
-    <!-- scripts -->
-    <script src="./js/app.js"></script>
-  </body>
+</head>
+<body>
+<div ui-view></div>
+<!-- scripts -->
+<script src="./js/app.js"></script>
+</body>
 </html>

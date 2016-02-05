@@ -8,18 +8,26 @@ var runSequence = require('run-sequence');
 require('load-gulp-tasks')(gulp);
 
 // *** default task *** //
-gulp.task('default', function() {
-  runSequence(
-    ['clean'],
-    ['lint', 'browserify', 'connect'],
-    ['watch']
-  );
+gulp.task('default', function () {
+    runSequence(
+        ['clean'],
+        ['bundle'],
+        ['connect'],
+        ['watch']
+    );
 });
 
 // *** build task *** //
-gulp.task('build', function() {
-  runSequence(
-    ['clean'],
-    ['lint', 'minify-css', 'browserifyDist', 'copy-html-files', 'copy-bower-components', 'connectDist']
-  );
+gulp.task('build', function () {
+    runSequence(
+        ['clean'],
+        ['minify-css', 'bundle', 'copy-html-files', 'copy-bower-components', 'connectDist']
+    );
+});
+
+gulp.task('bundle', function () {
+    runSequence(
+        ['browserify'],
+        ['ngannotate']
+    );
 });
