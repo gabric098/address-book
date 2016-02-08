@@ -5,3 +5,4 @@ npm-debug.log
 dist
 .idea/
 .idea_modules/
+app/js/app.js
