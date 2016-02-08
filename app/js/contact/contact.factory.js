@@ -1,4 +1,4 @@
-module.exports = function contactFactory(ContactsManager) {
+module.exports = function contactFactory() {
     "ngInject";
 
     function Contact(contactData) {
@@ -10,21 +10,6 @@ module.exports = function contactFactory(ContactsManager) {
     Contact.prototype = {
         setData: function(contactData) {
             angular.extend(this, contactData);
-        },
-
-        load: function(id) {
-            var contactData = ContactsManager.getContact(id);
-            if (contactData) {
-                this.setData(contactData);
-            }
-        },
-
-        delete: function() {
-            ContactsManager.removeModel(this.id);
-        },
-
-        save: function() {
-            ContactsManager.saveContact(this);
         }
     };
 

@@ -1,0 +1,6 @@
+<div class="form-group">
+    <label>{{label}}</label>
+    <select name="{{ name }}" ng-model="ngModel">
+        <option ng-repeat="country in ::countries" value="{{ ::country }}">{{ ::country }}</option>
+    </select>
+</div>

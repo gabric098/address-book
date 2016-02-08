@@ -27,6 +27,7 @@ gulp.task('build', function () {
 
 gulp.task('bundle', function () {
     runSequence(
+        ['templateCache'],
         ['browserify'],
         ['ngannotate']
     );

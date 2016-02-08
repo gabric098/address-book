@@ -4,7 +4,7 @@ module.exports = function contactsManager(LocalStorageAdapter, Contact) {
     var modelslist = {};
 
     function loadFromStorage() {
-        var item = LocalStorageAdapter.getItem('addressgetBook');
+        var item = LocalStorageAdapter.getItem('addressbook');
         if (item && item !== '') {
             modelslist = JSON.parse(item);
         }
@@ -20,7 +20,6 @@ module.exports = function contactsManager(LocalStorageAdapter, Contact) {
 
         _.each(modelslist, function(value, key) {
             var currentKey = parseInt(key);
-            console.log(key);
             if (currentKey > lastKey) {
                 lastKey = currentKey;
             }

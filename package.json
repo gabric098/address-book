@@ -19,6 +19,7 @@
     "browserify": "^5.10.0",
     "del": "^2.2.0",
     "gulp": "^3.8.7",
+    "gulp-angular-templatecache": "^1.8.0",
     "gulp-browserify": "^0.5.0",
     "gulp-concat": "^2.3.4",
     "gulp-connect": "^2.0.6",

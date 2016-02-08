@@ -1,6 +1,13 @@
-module.exports = function AddressbookController($scope) {
+module.exports = function AddressbookController($state, ContactsManager) {
     "ngInject";
-    console.log('addressbook');
+
     var vm = this;
-    vm.name = 'Hello';
+    vm.contacts = ContactsManager.getAllContacts();
+
+
+
+    vm.view = function(id) {
+
+        $state.go('addressbook.view', { id: id });
+    }
 };

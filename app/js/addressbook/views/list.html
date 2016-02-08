@@ -1,2 +1,3 @@
-Left list
-{{addressbook.name}}
+<ul>
+    <li ng-repeat="contact in AddressBook.contacts | orderBy:['name','surname'] track by contact.id" ng-click="AddressBook.view(contact.id)"> {{contact.name}} {{contact.surname}}</li>
+</ul>

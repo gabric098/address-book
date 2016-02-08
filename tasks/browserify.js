@@ -3,7 +3,7 @@ var concat = require('gulp-concat');
 
 module.exports = function (gulp, options, plugins) {
     gulp.task('browserify', function () {
-        return gulp.src(['app/js/init.js'])
+        return gulp.src(['app/js/init.js', 'app/templates.js'])
             .pipe(browserify({
                 insertGlobals: true,
                 debug: true
