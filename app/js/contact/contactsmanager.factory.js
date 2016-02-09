@@ -67,8 +67,11 @@ module.exports = function contactsManager(LocalStorageAdapter, Contact) {
     }
 
     function removeContact(id) {
+        console.log('remove contact invoked');
         if (_.has(modelslist, id)) {
-            delete modelslist.id;
+            console.log('it has it');
+            delete modelslist[id];
+            console.log(modelslist);
             saveToStorage();
         }
     }

@@ -1,3 +1,11 @@
-<ul>
-    <li ng-repeat="contact in AddressBook.contacts | orderBy:['name','surname'] track by contact.id" ng-click="AddressBook.view(contact.id)"> {{contact.name}} {{contact.surname}}</li>
-</ul>
+<md-list>
+    <md-list-item ng-repeat="contact in AddressBook.contacts | orderBy:['name','surname'] track by contact.id"
+                  ng-click="AddressBook.view(contact.id)">
+        <md-icon md-svg-src="./assets/avatar_icon.svg" class="avatar"></md-icon>
+        {{contact.name}} {{contact.surname}}
+        <md-button>
+
+            <ng-md-icon icon="delete" ng-click="AddressBook.delete(contact.id)"></ng-md-icon>
+        </md-button>
+    </md-list-item>
+</md-list>

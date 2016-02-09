@@ -2,6 +2,8 @@
 
 require('angular');
 require('angular-ui-router');
+require('angular-material');
+require('angular-material-icons');
 require('lodash');
 var addressbook = require('./addressbook');
 var common = require('./common');
@@ -12,6 +14,8 @@ var templates = require('./templates');
 angular
     .module('app', [
         'ui.router',
+        'ngMaterial',
+        'ngMdIcons',
         addressbook.name,
         common.name,
         contact.name,

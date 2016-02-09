@@ -1,9 +1,14 @@
-<div id="addressbook-container">
-    <div class="left-section">
+<md-toolbar layout="row">
+    <!--h1>Address book app</h1-->
+</md-toolbar>
+<div flex layout="row" id="addressbook-container">
+    <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" class="left-section">
         <div ui-view="leftArea"></div>
-    </div>
-    <div class="right-section">
+    </md-sidenav>
+    <md-content flex class="right-section">
         <div ui-view="rightArea"></div>
-    </div>
-    <a ui-sref="addressbook.add">Add New contact</a>
+        <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ui-sref="addressbook.add">
+            <ng-md-icon icon="add"></ng-md-icon>
+        </md-button>
+    </md-content>
 </div>

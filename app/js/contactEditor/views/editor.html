@@ -1,48 +1,68 @@
 <form name="contactForm" ng-submit="ContactEditor.submitForm()" novalidate>
-    <!-- NAME -->
-    <div class="form-group" ng-class="{ 'has-error' : contactForm.name.$invalid && !contactForm.name.$pristine }">
-        <label>First Name</label>
-        <input type="text" name="name" class="form-control" ng-model="ContactEditor.contact.name" required>
-        <p ng-show="contactForm.name.$invalid && !contactForm.name.$pristine" class="help-block">First name is required.</p>
-    </div>
+    <md-content layout-gt-sm="row" layout-padding>
+        <!-- NAME -->
+        <md-input-container>
+            <label>First Name</label>
+            <input type="text" name="name" ng-model="ContactEditor.contact.name" required>
 
-    <!-- SURNAME -->
-    <div class="form-group" ng-class="{ 'has-error' : contactForm.surname.$invalid && !contactForm.surname.$pristine }">
-        <label>Last Name</label>
-        <input type="text" name="surname" class="form-control" ng-model="ContactEditor.contact.surname" required>
-        <p ng-show="contactForm.surname.$invalid && !contactForm.surname.$pristine" class="help-block">Last name is required.</p>
-    </div>
+            <div ng-show="contactForm.name.$invalid && !contactForm.name.$pristine" ng-message="required">This is
+                required.
+            </div>
+        </md-input-container>
 
-    <!-- EMAIL -->
-    <div class="form-group" ng-class="{ 'has-error' : contactForm.email.$invalid && !contactForm.email.$pristine }">
-        <label>Email</label>
-        <input type="email" name="email" class="form-control" ng-model="ContactEditor.contact.email">
-        <p ng-show="contactForm.email.$invalid && !contactForm.email.$pristine" class="help-block">Enter a valid email.</p>
-    </div>
+        <!-- SURNAME -->
+        <md-input-container>
+            <label>Last Name</label>
+            <input type="text" name="surname" ng-model="ContactEditor.contact.surname" required>
 
-    <!-- ADDRESS -->
-    <div class="form-group">
-        <label>Address</label>
-        <input type="text" name="address" class="form-control" ng-model="ContactEditor.contact.address">
-    </div>
+            <div ng-show="contactForm.surname.$invalid && !contactForm.surname.$pristine" ng-message="required">This is
+                required.
+            </div>
+        </md-input-container>
+    </md-content>
 
-    <!-- CITY -->
-    <div class="form-group">
-        <label>City</label>
-        <input type="text" name="city" class="form-control" ng-model="ContactEditor.contact.city">
-    </div>
+    <md-content layout-gt-sm="row" layout-padding>
+        <!-- EMAIL -->
+        <md-input-container>
+            <label>Email</label>
+            <input type="email" name="email"  ng-model="ContactEditor.contact.email" required>
 
-    <!-- ZIP-CODE -->
-    <div class="form-group" ng-class="{ 'has-error' : contactForm.zip.$invalid && !contactForm.zip.$pristine }">
-        <label>Zip code</label>
-        <input type="text" name="zip" class="form-control" ng-pattern="/^\d{5}$/" ng-model="ContactEditor.contact.zip" required>
-        <p ng-show="contactForm.zip.$invalid && !contactForm.zip.$pristine" class="help-block">Enter a valid zip code.</p>
-    </div>
+            <div ng-show="contactForm.email.$invalid && !contactForm.email.$pristine" ng-message="required">Enter a
+                valid email.
+            </div>
+        </md-input-container>
 
-    <!-- COUNTRY -->
-    <div class="form-group" ng-class="{ 'has-error' : contactForm.zip.$invalid && !contactForm.zip.$pristine }">
-        <countries-select ng-model="ContactEditor.contact.country" label="Country" name="country" country-items="contacts.countries"></countries-select>
-    </div>
+        <!-- ADDRESS -->
+        <md-input-container>
+            <label>Address</label>
+            <input type="text" name="address"  ng-model="ContactEditor.contact.address">
+        </md-input-container>
+    </md-content>
 
-    <button type="submit" class="btn btn-primary" ng-disabled="contactForm.$invalid">Submit</button>
+    <md-content layout-gt-sm="row" layout-padding>
+        <!-- CITY -->
+        <md-input-container>
+            <label>City</label>
+            <input type="text" name="city"  ng-model="ContactEditor.contact.city">
+        </md-input-container>
+
+        <!-- ZIP-CODE -->
+        <md-input-container>
+            <label>Zip code</label>
+            <input type="text" name="zip"  ng-pattern="/^\d{5}$/"
+                   ng-model="ContactEditor.contact.zip" required>
+
+            <div ng-show="contactForm.zip.$invalid && !contactForm.zip.$pristine" ng-message="required">Enter a valid zip code.
+            </div>
+        </md-input-container>
+    </md-content>
+
+    <md-content layout-gt-sm="row" layout-padding>
+        <!-- COUNTRY -->
+        <countries-select ng-model="ContactEditor.contact.country" label="Country" name="country"
+                          country-items="contacts.countries"></countries-select>
+    </md-content>
+
+    <md-button type="submit" class="md-raised" ng-disabled="contactForm.$invalid" aria-label="Save Contact">Save
+    </md-button>
 </form>
