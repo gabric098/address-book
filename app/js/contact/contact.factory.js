@@ -10,6 +10,9 @@ module.exports = function contactFactory() {
     Contact.prototype = {
         setData: function(contactData) {
             angular.extend(this, contactData);
+        },
+        fullName: function() {
+            return this.name + " " + this.surname;
         }
     };
 

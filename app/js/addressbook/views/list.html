@@ -1,11 +1,9 @@
 <md-list>
     <md-list-item ng-repeat="contact in AddressBook.contacts | orderBy:['name','surname'] track by contact.id"
                   ng-click="AddressBook.view(contact.id)">
-        <md-icon md-svg-src="/assets/avatar_icon.svg" class="avatar"></md-icon>
-        {{contact.name}} {{contact.surname}}
-        <md-button>
-
-            <ng-md-icon icon="delete" ng-click="AddressBook.delete(contact.id)"></ng-md-icon>
+        <md-button class="md-fab md-mini md-primary" md-no-ink="true" aria-label="See details">
+            {{contact.name | limitTo:1 }}{{contact.surname  | limitTo:1}}
         </md-button>
+        {{contact.fullName()}}
     </md-list-item>
 </md-list>

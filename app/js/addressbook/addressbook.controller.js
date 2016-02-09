@@ -9,7 +9,6 @@ module.exports = function AddressbookController($state, ContactsManager) {
     };
 
     vm.delete = function(id) {
-
         ContactsManager.removeContact(id);
         $state.go('addressbook.list');
     };

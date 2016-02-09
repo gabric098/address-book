@@ -63,6 +63,8 @@
                           country-items="contacts.countries"></countries-select>
     </md-content>
 
-    <md-button type="submit" class="md-raised" ng-disabled="contactForm.$invalid" aria-label="Save Contact">Save
+    <md-button type="submit" class="md-raised md-primary" ng-disabled="contactForm.$invalid" on-click="ContactEditor.submitForm()" aria-label="Save Contact">Save
+    </md-button>
+    <md-button class="md-raised md-warn" aria-label="Delete Contact" ng-click="ContactEditor.confirmDelete(contact)">Delete
     </md-button>
 </form>

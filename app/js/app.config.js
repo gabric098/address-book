@@ -1,4 +1,4 @@
-module.exports = function appConfig($locationProvider, $stateProvider, $urlRouterProvider) {
+module.exports = function appConfig($locationProvider, $urlRouterProvider) {
     "ngInject";
 
     // HTML5 settings
@@ -8,13 +8,5 @@ module.exports = function appConfig($locationProvider, $stateProvider, $urlRoute
     });
 
     // For any unmatched url, redirect to index
-    $urlRouterProvider.otherwise("/");
-
-    // // Setup default state/path/template
-    $stateProvider.state('index', {
-        url: '/',
-        templateUrl: 'main/views/index.html',
-        controller: 'AppController',
-        controllerAs: 'app'
-    });
+    $urlRouterProvider.otherwise("/addressbook");
 };

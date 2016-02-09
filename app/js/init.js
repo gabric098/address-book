@@ -22,5 +22,4 @@ angular
         templates.name,
         contactEditor.name
     ])
-    .controller('AppController', require('./main/app.controller'))
     .config(require('./app.config'));

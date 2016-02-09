@@ -51,6 +51,7 @@ module.exports = function contactsManager(LocalStorageAdapter, Contact) {
         } else {
             addContact(contact);
         }
+        return contact.id;
     }
 
     function addContact(contact) {
@@ -58,6 +59,7 @@ module.exports = function contactsManager(LocalStorageAdapter, Contact) {
         contact.id = newKey;
         modelslist[newKey] = contact;
         saveToStorage();
+        return newKey;
     }
 
     function updateContact(id, contact) {
