@@ -50,7 +50,7 @@
         <md-input-container>
             <label>Zip code</label>
             <input type="text" name="zip"  ng-pattern="/^\d{5}$/"
-                   ng-model="ContactEditor.contact.zip" required>
+                   ng-model="ContactEditor.contact.zip">
 
             <div ng-show="contactForm.zip.$invalid && !contactForm.zip.$pristine" ng-message="required">Enter a valid zip code.
             </div>

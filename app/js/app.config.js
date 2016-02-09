@@ -13,7 +13,7 @@ module.exports = function appConfig($locationProvider, $stateProvider, $urlRoute
     // // Setup default state/path/template
     $stateProvider.state('index', {
         url: '/',
-        templateUrl: 'js/main/views/index.html',
+        templateUrl: 'main/views/index.html',
         controller: 'AppController',
         controllerAs: 'app'
     });

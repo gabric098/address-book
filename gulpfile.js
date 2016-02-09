@@ -21,7 +21,7 @@ gulp.task('default', function () {
 gulp.task('build', function () {
     runSequence(
         ['clean'],
-        ['minify-css', 'bundle', 'copy-html-files', 'copy-bower-components', 'connectDist']
+        ['minify-css', 'bundleDist', 'copy-html-files', 'copy-assets-files', 'copy-bower-components', 'connectDist']
     );
 });
 
@@ -29,6 +29,14 @@ gulp.task('bundle', function () {
     runSequence(
         ['templateCache'],
         ['browserify'],
+        ['ngannotate']
+    );
+});
+
+gulp.task('bundleDist', function () {
+    runSequence(
+        ['templateCache'],
+        ['browserifyDist'],
         ['ngannotate']
     );
 });

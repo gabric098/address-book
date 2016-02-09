@@ -1,7 +1,7 @@
 <md-list>
     <md-list-item ng-repeat="contact in AddressBook.contacts | orderBy:['name','surname'] track by contact.id"
                   ng-click="AddressBook.view(contact.id)">
-        <md-icon md-svg-src="./assets/avatar_icon.svg" class="avatar"></md-icon>
+        <md-icon md-svg-src="/assets/avatar_icon.svg" class="avatar"></md-icon>
         {{contact.name}} {{contact.surname}}
         <md-button>
 
