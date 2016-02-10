@@ -1,14 +1,13 @@
-<md-toolbar layout="row">
-    <!--h1>Address book app</h1-->
-</md-toolbar>
-<div flex layout="row" id="addressbook-container">
-    <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" class="left-section">
+<!--md-toolbar layout="row">
+</md-toolbar-->
+<section flex layout="row" id="main-addressbook">
+    <md-sidenav md-component-id="left" md-is-open="true" md-is-locked-open="$mdMedia('gt-xs')" class="md-whiteframe-z2">
         <div ui-view="leftArea"></div>
+        <md-button class="md-fab md-mini md-fab-bottom-right" aria-label="Add" ui-sref="addressbook.add">
+            <ng-md-icon style="fill:#FFFFFF" icon="person_add"></ng-md-icon>
+        </md-button>
     </md-sidenav>
     <md-content flex class="right-section">
         <div ui-view="rightArea"></div>
-        <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ui-sref="addressbook.add">
-            <ng-md-icon icon="add"></ng-md-icon>
-        </md-button>
     </md-content>
-</div>
+</section>

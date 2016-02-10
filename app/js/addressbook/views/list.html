@@ -1,3 +1,6 @@
+<md-toolbar class="md-theme-indigo">
+    <h1 class="md-toolbar-tools">Contacts</h1>
+</md-toolbar>
 <md-list>
     <md-list-item ng-repeat="contact in AddressBook.contacts | orderBy:['name','surname'] track by contact.id"
                   ng-click="AddressBook.view(contact.id)">

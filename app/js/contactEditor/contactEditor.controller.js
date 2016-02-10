@@ -27,8 +27,4 @@ module.exports = function ContactEditorController($state, $stateParams, Contacts
             vm.deleteContact();
         });
     };
-
-    vm.showToast = function() {
-
-    };
 };
