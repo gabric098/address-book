@@ -3,6 +3,12 @@
     module.exports = function localStorageAdapter() {
 
         var prefix = '_lsa_';
+        var service = {
+            getItem: getItem,
+            setItem: setItem,
+            getFullKey: getFullKey
+        };
+        return service;
 
         function getItem(key) {
             var result = null;
@@ -23,12 +29,6 @@
 
         function getFullKey(key) {
             return prefix + key;
-        }
-
-        return {
-            getItem: getItem,
-            setItem: setItem,
-            getFullKey: getFullKey
         }
     };
 })();

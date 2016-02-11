@@ -3,7 +3,7 @@
 </md-toolbar>
 <md-list>
     <md-list-item ng-repeat="contact in AddressBook.contacts | orderBy:['name','surname'] track by contact.id"
-                  ng-click="AddressBook.view(contact.id)">
+                  ng-click="AddressBook.viewContact(contact.id)">
         <md-button class="md-fab md-mini {{contact.gender | lowercase}}" md-no-ink="true" aria-label="See details">
             {{contact.name | limitTo:1 }}{{contact.surname  | limitTo:1}}
         </md-button>

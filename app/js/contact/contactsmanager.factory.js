@@ -5,6 +5,15 @@
 
         var modelslist = {};
 
+        var service = {
+            saveContact: saveContact,
+            removeContact: removeContact,
+            getAllContacts: getAllContacts,
+            getContact: getContact
+        };
+
+        return service;
+
         function loadFromStorage() {
             var item = LocalStorageAdapter.getItem('addressbook');
             if (item && item !== '') {
@@ -75,14 +84,6 @@
                 delete modelslist[id];
                 saveToStorage();
             }
-        }
-
-
-        return {
-            saveContact: saveContact,
-            removeContact: removeContact,
-            getAllContacts: getAllContacts,
-            getContact: getContact
         }
     };
 })();

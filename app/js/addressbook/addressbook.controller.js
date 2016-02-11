@@ -1,32 +1,41 @@
 (function () {
     'use strict';
+
     module.exports = function AddressbookController($scope, $state, $rootScope, ContactsManager) {
         "ngInject";
 
         var vm = this;
 
-        vm.view = function (id) {
-            $state.go('addressbook.view', {id: id});
-        };
+        var lstHandlers = [];
 
-        vm.delete = function (id) {
-            ContactsManager.removeContact(id);
-            $state.go('addressbook.list');
-        };
+        vm.viewContact = viewContact;
+        vm.refreshContacts = refreshContacts;
 
-        vm.refreshContacts = function () {
+        activate();
+
+        function activate() {
+            refreshContacts();
+            addEventListeners();
+        }
+
+        function addEventListeners() {
+            lstHandlers.push($rootScope.$on('contactUpdated', vm.refreshContacts));
+            lstHandlers.push($rootScope.$on('contactDeleted', vm.refreshContacts));
+            $scope.$on('$destroy', unbindListeners);
+        }
+
+        function refreshContacts() {
             vm.contacts = ContactsManager.getAllContacts();
-        };
+        }
 
-        vm.unbindListeners = function () {
-            lstHandlerAdd();
-            lstHandlerDel();
-        };
+        function viewContact(id) {
+            $state.go('addressbook.view', {id: id});
+        }
 
-        vm.refreshContacts();
-
-        var lstHandlerAdd = $rootScope.$on('contactUpdated', vm.refreshContacts);
-        var lstHandlerDel = $rootScope.$on('contactDeleted', vm.refreshContacts);
-        $scope.$on('$destroy', vm.unbindListeners);
+        function unbindListeners() {
+            lstHandlers.forEach(function(lstHandler) {
+                lstHandler();
+            });
+        }
     };
 })();

@@ -3,26 +3,39 @@
     module.exports = function ContactEditorController($state, $rootScope, $stateParams, ContactsManager, $mdDialog, $mdSidenav, NotificationsService) {
         "ngInject";
 
-        //$mdSidenav('left').close();
-
         var vm = this;
-        vm.contact = ContactsManager.getContact($stateParams.id);
 
-        vm.submitForm = function () {
+        vm.contact = {};
+        vm.submitForm = submitForm;
+        vm.deleteContact = deleteContact;
+        vm.confirmDelete = confirmDelete;
+        vm.back = back;
+
+        activate();
+
+        function activate() {
+            loadContact($stateParams.id)
+        }
+
+        function loadContact(contactId) {
+            vm.contact = ContactsManager.getContact(contactId);
+        }
+
+        function submitForm() {
             var savedContactId = ContactsManager.saveContact(vm.contact);
             $rootScope.$broadcast('contactUpdated');
             NotificationsService.showToast('New Contact created');
             $state.go('addressbook.view', {"id": savedContactId});
-        };
+        }
 
-        vm.deleteContact = function () {
+        function deleteContact() {
             ContactsManager.removeContact(vm.contact.id);
             NotificationsService.showToast('Contact deleted');
             $rootScope.$broadcast('contactDeleted');
             $state.go('addressbook.list');
-        };
+        }
 
-        vm.confirmDelete = function () {
+        function confirmDelete() {
             var confirm = $mdDialog.confirm()
                 .title('Do you really want to delete this contact?')
                 .textContent('The contact will be permanently deleted.')
@@ -32,10 +45,10 @@
             $mdDialog.show(confirm).then(function () {
                 vm.deleteContact();
             });
-        };
+        }
 
-        vm.back = function () {
+        function back() {
             $mdSidenav('left').open();
-        };
+        }
     };
 })();
