@@ -1,17 +1,21 @@
-module.exports = function appConfig($locationProvider, $urlRouterProvider, $mdThemingProvider) {
-    "ngInject";
+(function () {
+    'use strict';
 
-    // HTML5 settings
-    $locationProvider.html5Mode({
-        enabled: true,
-        requireBase: false
-    });
+    module.exports = function appConfig($locationProvider, $urlRouterProvider, $mdThemingProvider) {
+        "ngInject";
 
-    $mdThemingProvider.theme('default')
-        .primaryPalette('indigo')
-        .accentPalette('blue')
-        .warnPalette('red');
+        // HTML5 settings
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
 
-    // For any unmatched url, redirect to index
-    $urlRouterProvider.otherwise("/addressbook");
-};
+        $mdThemingProvider.theme('default')
+            .primaryPalette('indigo')
+            .accentPalette('blue')
+            .warnPalette('red');
+
+        // For any unmatched url, redirect to index
+        $urlRouterProvider.otherwise("/addressbook");
+    };
+})();

@@ -1,31 +1,34 @@
-module.exports = function localStorageAdapter() {
+(function () {
+    'use strict';
+    module.exports = function localStorageAdapter() {
 
-    var prefix = '_lsa_';
+        var prefix = '_lsa_';
 
-    function getItem (key) {
-        var result = null;
-        var item = null;
+        function getItem(key) {
+            var result = null;
+            var item = null;
 
-        item = localStorage.getItem(getFullKey(key));
+            item = localStorage.getItem(getFullKey(key));
 
-        if(item) {
-            result = JSON.parse(item);
+            if (item) {
+                result = JSON.parse(item);
+            }
+
+            return result;
         }
 
-        return result;
-    }
+        function setItem(key, value) {
+            localStorage.setItem(getFullKey(key), JSON.stringify(value));
+        }
 
-    function setItem(key, value) {
-        localStorage.setItem(getFullKey(key), JSON.stringify(value));
-    }
+        function getFullKey(key) {
+            return prefix + key;
+        }
 
-    function getFullKey(key) {
-        return prefix + key;
-    }
-
-    return {
-        getItem: getItem,
-        setItem: setItem,
-        getFullKey: getFullKey
-    }
-};
+        return {
+            getItem: getItem,
+            setItem: setItem,
+            getFullKey: getFullKey
+        }
+    };
+})();
