@@ -1,6 +1,7 @@
 (function () {
     'use strict';
     module.exports = function notificationsFactory($mdToast) {
+        "ngInject";
 
         var service = {
             showToast: showToast

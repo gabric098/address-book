@@ -34,6 +34,18 @@
                         controllerAs: 'ContactEditor',
                         templateUrl: "contactEditor/views/editor.html"
                     }
+                },
+                resolve: {
+                    /* @ngInject */
+                    none: function (LayoutManager) {
+                        LayoutManager.toggleList(false);
+                    },
+                    options: function () {
+                        return {
+                            title: 'View/Edit contact',
+                            mode: 'view'
+                        }
+                    }
                 }
             })
             .state('addressbook.add', {
@@ -48,6 +60,18 @@
                         controller: "ContactEditorController",
                         controllerAs: 'ContactEditor',
                         templateUrl: "contactEditor/views/editor.html"
+                    }
+                },
+                resolve: {
+                    /* @ngInject */
+                    none: function (LayoutManager) {
+                        LayoutManager.toggleList(false);
+                    },
+                    options: function () {
+                        return {
+                            title: 'Add new contact',
+                            mode: 'add'
+                        }
                     }
                 }
             });

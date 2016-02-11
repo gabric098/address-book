@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    module.exports = function AddressbookController($scope, $state, $rootScope, ContactsManager) {
+    module.exports = function AddressbookController($scope, $state, $rootScope, $mdSidenav, ContactsManager, LayoutManager) {
         "ngInject";
 
         var vm = this;
@@ -10,6 +10,8 @@
 
         vm.viewContact = viewContact;
         vm.refreshContacts = refreshContacts;
+        vm.isListPanelOpen = isListPanelOpen;
+        vm.back = back;
 
         activate();
 
@@ -33,9 +35,17 @@
         }
 
         function unbindListeners() {
-            lstHandlers.forEach(function(lstHandler) {
+            lstHandlers.forEach(function (lstHandler) {
                 lstHandler();
             });
+        }
+
+        function isListPanelOpen() {
+            return LayoutManager.isListPanelOpen();
+        }
+
+        function back() {
+            LayoutManager.toggleList(true);
         }
     };
 })();

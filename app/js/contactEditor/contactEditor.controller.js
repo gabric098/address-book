@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    module.exports = function ContactEditorController($state, $rootScope, $stateParams, ContactsManager, $mdDialog, $mdSidenav, NotificationsService) {
+    module.exports = function ContactEditorController($state, $rootScope, $stateParams, ContactsManager, $mdDialog, NotificationsService, options) {
         "ngInject";
 
         var vm = this;
@@ -9,12 +9,15 @@
         vm.submitForm = submitForm;
         vm.deleteContact = deleteContact;
         vm.confirmDelete = confirmDelete;
-        vm.back = back;
+        vm.title = '';
+        vm.mode = '';
 
         activate();
 
         function activate() {
             loadContact($stateParams.id)
+            vm.title = options.title;
+            vm.mode = options.mode;
         }
 
         function loadContact(contactId) {
@@ -45,10 +48,6 @@
             $mdDialog.show(confirm).then(function () {
                 vm.deleteContact();
             });
-        }
-
-        function back() {
-            $mdSidenav('left').open();
         }
     };
 })();
