@@ -4,7 +4,7 @@
 <md-list>
     <md-list-item ng-repeat="contact in AddressBook.contacts | orderBy:['name','surname'] track by contact.id"
                   ng-click="AddressBook.view(contact.id)">
-        <md-button class="md-fab md-mini md-primary" md-no-ink="true" aria-label="See details">
+        <md-button class="md-fab md-mini {{contact.gender | lowercase}}" md-no-ink="true" aria-label="See details">
             {{contact.name | limitTo:1 }}{{contact.surname  | limitTo:1}}
         </md-button>
         {{contact.fullName()}}

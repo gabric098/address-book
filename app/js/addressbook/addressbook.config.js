@@ -4,16 +4,19 @@ module.exports = function addressbookConfig($stateProvider) {
     $stateProvider
         .state('addressbook', {
             abstract: true,
+            controller: "AddressbookController",
+            controllerAs: 'AddressBook',
             templateUrl: "addressbook/views/addressbook.html"
         })
         .state('addressbook.list', {
             url: "/addressbook",
             views: {
                 "leftArea": {
-                    controller: "AddressbookController",
-                    controllerAs: 'AddressBook',
-                    templateUrl: "addressbook/views/list.html"},
-                "rightArea": {templateUrl: "addressbook/views/index.html"}
+                    templateUrl: "addressbook/views/list.html"
+                },
+                "rightArea": {
+                    templateUrl: "addressbook/views/index.html"
+                }
             }
         })
         .state('addressbook.view', {
@@ -22,9 +25,8 @@ module.exports = function addressbookConfig($stateProvider) {
             controllerAs: 'Editor',
             views: {
                 "leftArea": {
-                    controller: "AddressbookController",
-                    controllerAs: 'AddressBook',
-                    templateUrl: "addressbook/views/list.html"},
+                    templateUrl: "addressbook/views/list.html"
+                },
                 "rightArea": {
                     controller: "ContactEditorController",
                     controllerAs: 'ContactEditor',
@@ -38,9 +40,8 @@ module.exports = function addressbookConfig($stateProvider) {
             controllerAs: 'Editor',
             views: {
                 "leftArea": {
-                    controller: "AddressbookController",
-                    controllerAs: 'AddressBook',
-                    templateUrl: "addressbook/views/list.html"},
+                    templateUrl: "addressbook/views/list.html"
+                },
                 "rightArea": {
                     controller: "ContactEditorController",
                     controllerAs: 'ContactEditor',

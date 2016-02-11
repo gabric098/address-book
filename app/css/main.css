@@ -1,7 +1,22 @@
-/* css */
-ng-md-icon svg {
+.md-fab ng-md-icon svg {
     transform: translate3d(0, 25%, 0);
 }
 #main-addressbook {
     min-height: 400px;
+}
+ng-md-icon {
+    fill: #E6E8F6;
+}
+
+.md-button.md-fab.female,
+.md-button.md-fab.female:not([disabled]):hover{
+    background-color: pink;
+}
+
+.md-button.md-fab.male,
+.md-button.md-fab.male:not([disabled]):hover{
+    background-color: rgb(68,138,255);
+}
+.md-button.md-fab {
+    background-color: lightgrey;
 }
