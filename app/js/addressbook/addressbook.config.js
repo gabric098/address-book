@@ -19,6 +19,12 @@
                     "rightArea": {
                         templateUrl: "addressbook/views/index.html"
                     }
+                },
+                resolve: {
+                    /* @ngInject */
+                    none: function (LayoutManager) {
+                        LayoutManager.toggleList(true);
+                    }
                 }
             })
             .state('addressbook.view', {

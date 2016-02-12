@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    module.exports = function ContactEditorController($state, $rootScope, $stateParams, ContactsManager, $mdDialog, NotificationsService, options) {
+    module.exports = function ContactEditorController($state, $rootScope, $stateParams, ContactsManager, $mdDialog, $mdMedia, NotificationsService, options) {
         "ngInject";
 
         var vm = this;
@@ -25,10 +25,15 @@
         }
 
         function submitForm() {
+            var message = (vm.contact.id) ? 'Contact updated' : 'New contact created';
             var savedContactId = ContactsManager.saveContact(vm.contact);
             $rootScope.$broadcast('contactUpdated');
-            NotificationsService.showToast('New Contact created');
-            $state.go('addressbook.view', {"id": savedContactId});
+            NotificationsService.showToast(message);
+            if ($mdMedia('xs')) {
+                $state.go('addressbook.list');
+            } else {
+                $state.go('addressbook.view', {"id": savedContactId});
+            }
         }
 
         function deleteContact() {

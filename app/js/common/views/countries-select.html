@@ -1,8 +1,6 @@
-<div class="form-group">
-    <md-input-container>
-        <label>{{label}}</label>
-        <md-select name="{{ name }}" ng-model="ngModel">
-            <md-option ng-repeat="country in ::countries" value="{{ ::country }}">{{ ::country }}</md-option>
-        </md-select>
-    </md-input-container>
-</div>
+<md-input-container class="md-block" flex-gt-sm>
+    <label>{{label}}</label>
+    <md-select name="{{ name }}" ng-model="ngModel">
+        <md-option ng-repeat="country in ::countries" value="{{ ::country }}">{{ ::country }}</md-option>
+    </md-select>
+</md-input-container>
