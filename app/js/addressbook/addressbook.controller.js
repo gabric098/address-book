@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    module.exports = function AddressbookController($scope, $state, $rootScope, $mdSidenav, ContactsManager, LayoutManager) {
+    module.exports = function AddressbookController($scope, $state, $rootScope, $mdSidenav, ContactsManager, LayoutManager, Notifications) {
         "ngInject";
 
         var vm = this;
@@ -27,7 +27,7 @@
         }
 
         function refreshContacts() {
-            vm.contacts = ContactsManager.getAllContacts();
+            ContactsManager.getAllContacts().then(onContactsLoad, onContactsLoadError);
         }
 
         function viewContact(id) {
@@ -46,6 +46,16 @@
 
         function back() {
             LayoutManager.toggleList(true);
+        }
+
+        function onContactsLoad(contacts) {
+            console.log('onContactsLoad');
+            vm.contacts = contacts;
+        }
+
+        function onContactsLoadError(contacts) {
+            vm.contacts = contacts;
+            Notifications.showToast('There was an error loading the contacts.');
         }
     };
 })();

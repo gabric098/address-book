@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    module.exports = function ContactEditorController($state, $rootScope, $stateParams, ContactsManager, $mdDialog, $mdMedia, NotificationsService, options) {
+    module.exports = function ContactEditorController($state, $rootScope, $stateParams, ContactsManager, $mdDialog, $mdMedia, Notifications, options) {
         "ngInject";
 
         var vm = this;
@@ -15,7 +15,7 @@
         activate();
 
         function activate() {
-            loadContact($stateParams.id)
+            loadContact($stateParams.id);
             vm.title = options.title;
             vm.mode = options.mode;
         }
@@ -25,20 +25,13 @@
         }
 
         function submitForm() {
-            var message = (vm.contact.id) ? 'Contact updated' : 'New contact created';
-            var savedContactId = ContactsManager.saveContact(vm.contact);
-            $rootScope.$broadcast('contactUpdated');
-            NotificationsService.showToast(message);
-            if ($mdMedia('xs')) {
-                $state.go('addressbook.list');
-            } else {
-                $state.go('addressbook.view', {"id": savedContactId});
-            }
+            ContactsManager.saveContact(vm.contact).then(onSaveContact, onSaveContentError);
+
         }
 
         function deleteContact() {
             ContactsManager.removeContact(vm.contact.id);
-            NotificationsService.showToast('Contact deleted');
+            Notifications.showToast('Contact deleted');
             $rootScope.$broadcast('contactDeleted');
             $state.go('addressbook.list');
         }
@@ -53,6 +46,20 @@
             $mdDialog.show(confirm).then(function () {
                 vm.deleteContact();
             });
+        }
+
+        function onSaveContact(savedContactId) {
+            $rootScope.$broadcast('contactUpdated');
+            Notifications.showToast('Contact saved');
+            if ($mdMedia('xs')) {
+                $state.go('addressbook.list');
+            } else {
+                $state.go('addressbook.view', {"id": savedContactId});
+            }
+        }
+
+        function onSaveContentError() {
+            Notifications.showToast('Error saving contact');
         }
     };
 })();

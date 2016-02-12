@@ -1,9 +1,10 @@
 (function () {
     'use strict';
-    module.exports = function contactsManager(LocalStorageAdapter, Contact) {
+    module.exports = function contactsManager($q, LocalStorageAdapter, Contact, Notifications) {
         "ngInject";
 
         var modelslist = {};
+        var storageKeyName = 'addressbook';
 
         var service = {
             saveContact: saveContact,
@@ -14,21 +15,26 @@
 
         return service;
 
+        /**
+         * Load contacts data from the storage adapter storage
+         */
         function loadFromStorage() {
-            var item = LocalStorageAdapter.getItem('addressbook');
-            if (item && item !== '') {
-                modelslist = JSON.parse(item);
-            }
+            return LocalStorageAdapter.getItem(storageKeyName).then(function(data) {
+                modelslist = data;
+                console.log(data);
+            }, function() {
+                // if something goes wrong, let's use a clean empty object
+                modelslist = {};
+                return $q.reject();
+            });
         }
 
         function saveToStorage() {
-            LocalStorageAdapter.setItem('addressbook', JSON.stringify(modelslist));
+            return LocalStorageAdapter.setItem(storageKeyName, modelslist);
         }
 
         function getNewKey() {
-            loadFromStorage();
             var lastKey = 0;
-
             _.each(modelslist, function (value, key) {
                 var currentKey = parseInt(key);
                 if (currentKey > lastKey) {
@@ -39,50 +45,53 @@
         }
 
         function getContact(id) {
-            loadFromStorage();
-            var contact = null;
-            if (modelslist.hasOwnProperty(id)) {
-                contact = new Contact(modelslist[id]);
-            }
-            return contact;
+            loadFromStorage().then(function() {
+                var contact = null;
+                if (modelslist.hasOwnProperty(id)) {
+                    contact = new Contact(modelslist[id]);
+                }
+                return contact;
+            });
         }
 
         function getAllContacts() {
-            loadFromStorage();
-            var contacts = [];
-            _.each(modelslist, function (value, key) {
-                contacts.push(new Contact(value));
+            return loadFromStorage().then(function() {
+                var contacts = [];
+                _.each(modelslist, function (value) {
+                    contacts.push(new Contact(value));
+                });
+                return contacts;
             });
-            return contacts;
         }
 
         function saveContact(contact) {
             if (contact.id) {
-                updateContact(contact.id, contact);
+                return updateContact(contact.id, contact);
             } else {
-                addContact(contact);
+                return addContact(contact);
             }
-            return contact.id;
         }
 
         function addContact(contact) {
             var newKey = getNewKey();
             contact.id = newKey;
             modelslist[newKey] = contact;
-            saveToStorage();
-            return newKey;
+            return saveToStorage().then(function() {
+                return newKey;
+            });
         }
 
         function updateContact(id, contact) {
-            loadFromStorage();
             modelslist[id] = contact;
-            saveToStorage();
+            return saveToStorage().then(function() {
+                return id;
+            });
         }
 
         function removeContact(id) {
             if (_.has(modelslist, id)) {
                 delete modelslist[id];
-                saveToStorage();
+                return saveToStorage();
             }
         }
     };
