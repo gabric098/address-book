@@ -15,7 +15,7 @@ module.exports = function (gulp, options, plugins) {
         return gulp.src(['app/js/app.module.js'])
             .pipe(browserify({
                 insertGlobals: true,
-                debug: true
+                debug: false
             }))
             .pipe(concat('app.js'))
             .pipe(gulp.dest('./dist/js'));

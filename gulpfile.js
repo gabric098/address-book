@@ -37,6 +37,7 @@ gulp.task('bundleDist', function () {
     runSequence(
         ['templateCache'],
         ['browserifyDist'],
-        ['ngannotate']
+        ['ngannotate'],
+        ['minify-js']
     );
 });
