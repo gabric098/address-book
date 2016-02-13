@@ -1,8 +1,7 @@
 <section flex layout="row" id="main-addressbook">
-    <md-sidenav md-component-id="left" md-is-open="AddressBook.isListPanelOpen()" md-is-locked-open="$mdMedia('gt-xs')" class="md-whiteframe-z2">
-        {{AddressBook.isOpen}}
+    <md-sidenav md-component-id="left" md-is-open="AddressBook.showList"  md-is-locked-open="$mdMedia('gt-xs')" class="md-whiteframe-z2">
         <div ui-view="leftArea"></div>
-        <md-button class="md-fab md-warn md-mini md-fab-bottom-right" aria-label="Add" ui-sref="addressbook.add">
+        <md-button id="add-new-btn" class="md-fab md-warn" aria-label="Add" ui-sref="addressbook.add">
             <ng-md-icon icon="person_add"></ng-md-icon>
         </md-button>
     </md-sidenav>

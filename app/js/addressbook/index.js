@@ -5,4 +5,16 @@
         ])
         .controller('AddressbookController', require('./addressbook.controller'))
         .config(require('./addressbook.config'))
+        .run(function ($state, $rootScope, Notifications) {
+            "ngInject";
+            $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+                event.preventDefault();
+                var message = "Oops, something went wrong.";
+                if (error.message) {
+                    message = error.message;
+                }
+                Notifications.showToast(error.message);
+                $state.go('addressbook.list');
+            });
+        });
 })();

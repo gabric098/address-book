@@ -9,4 +9,9 @@
         </md-button>
         {{contact.fullName()}}
     </md-list-item>
+    <md-content ng-hide="AddressBook.contacts.length > 0" flex="" layout-padding="">
+        <div layout="column" layout-fill="" layout-align="top center">
+            <p>Hey, no contacts here!</p>
+        </div>
+    </md-content>
 </md-list>

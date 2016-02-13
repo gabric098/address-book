@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    module.exports = function AddressbookController($scope, $state, $rootScope, $mdSidenav, ContactsManager, LayoutManager, Notifications) {
+    module.exports = function AddressbookController($scope, $state, $rootScope, $mdSidenav, ContactsManager, Notifications, contactsPrepService) {
         "ngInject";
 
         var vm = this;
@@ -10,13 +10,14 @@
 
         vm.viewContact = viewContact;
         vm.refreshContacts = refreshContacts;
-        vm.isListPanelOpen = isListPanelOpen;
-        vm.back = back;
+        vm.showContactsList = showContactsList;
+        vm.contacts = [];
+        vm.showList = true;
 
         activate();
 
         function activate() {
-            refreshContacts();
+            vm.contacts = contactsPrepService;
             addEventListeners();
         }
 
@@ -31,31 +32,27 @@
         }
 
         function viewContact(id) {
+            $mdSidenav('left').close();
             $state.go('addressbook.view', {id: id});
         }
 
-        function unbindListeners() {
-            lstHandlers.forEach(function (lstHandler) {
-                lstHandler();
-            });
-        }
-
-        function isListPanelOpen() {
-            return LayoutManager.isListPanelOpen();
-        }
-
-        function back() {
-            LayoutManager.toggleList(true);
+        function showContactsList() {
+            $mdSidenav('left').open();
         }
 
         function onContactsLoad(contacts) {
-            console.log('onContactsLoad');
             vm.contacts = contacts;
         }
 
         function onContactsLoadError(contacts) {
             vm.contacts = contacts;
             Notifications.showToast('There was an error loading the contacts.');
+        }
+
+        function unbindListeners() {
+            lstHandlers.forEach(function (lstHandler) {
+                lstHandler();
+            });
         }
     };
 })();

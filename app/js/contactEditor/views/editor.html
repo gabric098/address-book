@@ -1,6 +1,6 @@
 <md-toolbar class="md-theme-indigo">
     <div class="md-toolbar-tools">
-        <md-button hide-gt-xs ng-click="AddressBook.back()" class="md-icon-button" aria-label="Back">
+        <md-button hide-gt-xs ng-click="ContactEditor.showContactsList()" class="md-icon-button" aria-label="Back">
             <ng-md-icon icon="arrow_back"></ng-md-icon>
         </md-button>
         <h1 class="md-toolbar-tools">{{ContactEditor.title}}</h1>
@@ -13,7 +13,7 @@
             <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>First Name</label>
-                    <input type="text" name="name" ng-model="ContactEditor.contact.name" required>
+                    <input autocomplete="off" type="text" name="name" ng-model="ContactEditor.contact.name" required>
 
                     <div ng-show="contactForm.name.$invalid && !contactForm.name.$pristine" ng-message="required">This is required.</div>
                 </md-input-container>

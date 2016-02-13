@@ -8,7 +8,10 @@
                 abstract: true,
                 controller: "AddressbookController",
                 controllerAs: 'AddressBook',
-                templateUrl: "addressbook/views/addressbook.html"
+                templateUrl: "addressbook/views/addressbook.html",
+                resolve: {
+                    contactsPrepService: contactsPrepService
+                }
             })
             .state('addressbook.list', {
                 url: "/addressbook",
@@ -18,12 +21,6 @@
                     },
                     "rightArea": {
                         templateUrl: "addressbook/views/index.html"
-                    }
-                },
-                resolve: {
-                    /* @ngInject */
-                    none: function (LayoutManager) {
-                        LayoutManager.toggleList(true);
                     }
                 }
             })
@@ -43,15 +40,13 @@
                 },
                 resolve: {
                     /* @ngInject */
-                    none: function (LayoutManager) {
-                        LayoutManager.toggleList(false);
-                    },
                     options: function () {
                         return {
                             title: 'View/Edit contact',
                             mode: 'view'
                         }
-                    }
+                    },
+                    contactPrepService: contactPrepService
                 }
             })
             .state('addressbook.add', {
@@ -70,16 +65,27 @@
                 },
                 resolve: {
                     /* @ngInject */
-                    none: function (LayoutManager) {
-                        LayoutManager.toggleList(false);
-                    },
                     options: function () {
                         return {
                             title: 'Add new contact',
                             mode: 'add'
                         }
+                    },
+                    contactPrepService: function () {
+                        return {};
                     }
                 }
             });
+
+
+        function contactsPrepService(ContactsManager) {
+            /* @ngInject */
+            return ContactsManager.getAllContacts();
+        }
+
+        function contactPrepService(ContactsManager, $stateParams) {
+            /* @ngInject */
+            return ContactsManager.getContact($stateParams.id);
+        }
     };
 })();

@@ -21,7 +21,6 @@
         function loadFromStorage() {
             return LocalStorageAdapter.getItem(storageKeyName).then(function(data) {
                 modelslist = data;
-                console.log(data);
             }, function() {
                 // if something goes wrong, let's use a clean empty object
                 modelslist = {};
@@ -45,12 +44,13 @@
         }
 
         function getContact(id) {
-            loadFromStorage().then(function() {
-                var contact = null;
+            return loadFromStorage().then(function() {
                 if (modelslist.hasOwnProperty(id)) {
-                    contact = new Contact(modelslist[id]);
+                    return new Contact(modelslist[id]);
                 }
-                return contact;
+                return $q.reject({
+                    message: 'Contact not found'
+                });
             });
         }
 

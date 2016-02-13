@@ -1,9 +1,6 @@
 .md-fab ng-md-icon svg {
     transform: translate3d(0, 25%, 0);
 }
-#main-addressbook {
-    min-height: 400px;
-}
 ng-md-icon {
     fill: #E6E8F6;
 }
@@ -19,4 +16,10 @@ ng-md-icon {
 }
 .md-button.md-fab {
     background-color: lightgrey;
+}
+
+#add-new-btn {
+    position: absolute;
+    top: 22px;
+    right: 20px;
 }
