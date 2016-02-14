@@ -3,6 +3,7 @@
  */
 (function () {
     'use strict';
+
     module.exports = function contactsManager($q, LocalStorageAdapter, Contact) {
         "ngInject";
 

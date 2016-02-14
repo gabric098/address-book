@@ -10,8 +10,9 @@ require('load-gulp-tasks')(gulp);
 // *** default task *** //
 gulp.task('default', function () {
     runSequence(
-        ['clean'],
-        ['bundle'],
+        ['clean', 'lint', 'templateCache'],
+        ['browserify'],
+        ['ngannotate'],
         ['watch'],
         ['connect']
     );
@@ -20,24 +21,10 @@ gulp.task('default', function () {
 // *** build task *** //
 gulp.task('build', function () {
     runSequence(
-        ['clean'],
-        ['minify-css', 'bundleDist', 'copy-html-files', 'copy-assets-files', 'connectDist']
-    );
-});
-
-gulp.task('bundle', function () {
-    runSequence(
-        ['templateCache'],
-        ['browserify'],
-        ['ngannotate']
-    );
-});
-
-gulp.task('bundleDist', function () {
-    runSequence(
-        ['templateCache'],
+        ['clean', 'lint', 'templateCache', 'minify-css', 'copy-html-files', 'copy-assets-files'],
         ['browserifyDist'],
         ['ngannotate'],
-        ['minify-js']
+        ['minify-js'],
+        ['connectDist']
     );
 });

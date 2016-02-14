@@ -5,7 +5,14 @@
 (function () {
     'use strict';
 
-    module.exports = function AddressbookController($scope, $state, $rootScope, $mdSidenav, ContactsManager, Notifications, contactsPrepService) {
+    module.exports = function AddressbookController(
+        $scope,
+        $state,
+        $rootScope,
+        $mdSidenav,
+        ContactsManager,
+        Notifications,
+        contactsPrepService) {
         "ngInject";
 
         var vm = this;

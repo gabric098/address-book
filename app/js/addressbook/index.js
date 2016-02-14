@@ -3,6 +3,8 @@
  * Adds a common error handler for route changing errors (error resolving promises during route loading)
  */
 (function () {
+    'use strict';
+
     module.exports = angular
         .module('app.addressbook', [
             'ui.router'

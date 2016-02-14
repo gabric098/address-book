@@ -6,6 +6,7 @@
  */
 (function () {
     'use strict';
+
     module.exports = function addressbookConfig($stateProvider) {
         "ngInject";
 
@@ -50,7 +51,7 @@
                         return {
                             title: 'View/Edit contact',
                             mode: 'view'
-                        }
+                        };
                     },
                     contactPrepService: contactPrepService
                 }
@@ -75,7 +76,7 @@
                         return {
                             title: 'Add new contact',
                             mode: 'add'
-                        }
+                        };
                     },
                     contactPrepService: function () {
                         return {};

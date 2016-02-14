@@ -4,6 +4,7 @@
  */
 (function () {
     'use strict';
+
     module.exports = function localStorageAdapter($q) {
 
         /**

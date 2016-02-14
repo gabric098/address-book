@@ -1,7 +1,9 @@
 /**
  * app.contact module definition
  */
-(function () {'use strict';
+(function () {
+    'use strict';
+
     module.exports = angular
         .module('app.contact', [])
         .factory('Contact', require('./contact.factory'))

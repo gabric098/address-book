@@ -4,7 +4,17 @@
  */
 (function () {
     'use strict';
-    module.exports = function ContactEditorController($state, $rootScope, $mdDialog, $mdMedia, $mdSidenav, ContactsManager, Notifications, options, contactPrepService) {
+
+    module.exports = function ContactEditorController(
+        $state,
+        $rootScope,
+        $mdDialog,
+        $mdMedia,
+        $mdSidenav,
+        ContactsManager,
+        Notifications,
+        options,
+        contactPrepService) {
         "ngInject";
 
         var vm = this;
