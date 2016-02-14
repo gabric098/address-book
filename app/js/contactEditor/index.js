@@ -1,3 +1,6 @@
+/**
+ * app.contactEditor module definition
+ */
 (function () {
     'use strict';
     module.exports = angular

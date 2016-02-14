@@ -1,3 +1,9 @@
+/**
+ * app module configuration
+ * - forces html5 mode
+ * - setup some theme properties
+ * - define the default route
+ */
 (function () {
     'use strict';
 

@@ -1,8 +1,17 @@
+/**
+ * A Service responsible for loading/saving data from browser's local storage
+ * It implements Promises despite the synchronous nature of the local storage
+ */
 (function () {
     'use strict';
     module.exports = function localStorageAdapter($q) {
 
+        /**
+         * A prefix to minimize the risk of localstorage keys conflicts
+         * @type {string}
+         */
         var prefix = '_lsa_';
+
         var service = {
             getItem: getItem,
             setItem: setItem

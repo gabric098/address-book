@@ -1,3 +1,6 @@
+/**
+ * application entry point
+ */
 (function () {
     'use strict';
 

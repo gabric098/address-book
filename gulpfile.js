@@ -12,8 +12,8 @@ gulp.task('default', function () {
     runSequence(
         ['clean'],
         ['bundle'],
-        ['connect'],
-        ['watch']
+        ['watch'],
+        ['connect']
     );
 });
 

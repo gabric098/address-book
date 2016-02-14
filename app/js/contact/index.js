@@ -1,3 +1,6 @@
+/**
+ * app.contact module definition
+ */
 (function () {'use strict';
     module.exports = angular
         .module('app.contact', [])

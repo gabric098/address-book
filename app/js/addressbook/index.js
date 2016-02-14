@@ -1,3 +1,7 @@
+/**
+ * app.addressbook module definition
+ * Adds a common error handler for route changing errors (error resolving promises during route loading)
+ */
 (function () {
     module.exports = angular
         .module('app.addressbook', [

@@ -1,3 +1,6 @@
+/**
+ * Directive which generates the markup for a countries select.
+ */
 (function () {
     'use strict';
     module.exports = function countriesSelect() {

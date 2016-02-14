@@ -1,3 +1,9 @@
+/**
+ * addressbook module configuration.
+ * Routing: addressbook is a base abstract view from which all the other routes inherit.
+ * Note: addressbook.view and addressbook.add should have a common abstract ancestor route since
+ * they're sharing the same controller and most of the initialization logic
+ */
 (function () {
     'use strict';
     module.exports = function addressbookConfig($stateProvider) {
@@ -78,11 +84,27 @@
             });
 
 
+        /**
+         * Retrieves all the contacts.
+         * It's used as a resolver in the addressbook route
+         * initialization.
+         *
+         * @param ContactsManager
+         * @returns {*|promise} A promise object containing all the contacts
+         */
         function contactsPrepService(ContactsManager) {
             /* @ngInject */
             return ContactsManager.getAllContacts();
         }
 
+        /**
+         * Retrieves a specific contact identified by the id.
+         * It's used as a resolver in the addressbook.view route initialization
+         *
+         * @param ContactsManager
+         * @param $stateParams
+         * @returns {*|promise} A promise object containing the specified contact
+         */
         function contactPrepService(ContactsManager, $stateParams) {
             /* @ngInject */
             return ContactsManager.getContact($stateParams.id);
