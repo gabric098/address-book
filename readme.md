@@ -1,18 +1,16 @@
 # Address Book application
 ## An angular addressbook application which use localstorage as persistence layer
 
-The following instructions assume you have already **node**, **npm** and **bower** installed globally. During development I've been using the following versions
+The following instructions assume you have already **node** and **npm** installed globally. During development I've been using the following versions
 ```
 node v5.4.1
 npm 3.3.12
-bower 1.7.7
 ```
 
 ### Installation:
-Install first npm and bower modules:
+Install first npm  modules:
 ```
 sudo npm install
-bower install
 ```
 
 ### Run in dev mode:

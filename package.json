@@ -19,7 +19,6 @@
     "lodash": "^4.2.1"
   },
   "devDependencies": {
-    "bower": "^1.7.7",
     "browserify": "^5.10.0",
     "del": "^2.2.0",
     "gulp": "^3.8.7",

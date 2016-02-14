@@ -21,7 +21,7 @@ gulp.task('default', function () {
 gulp.task('build', function () {
     runSequence(
         ['clean'],
-        ['minify-css', 'bundleDist', 'copy-html-files', 'copy-assets-files', 'copy-bower-components', 'connectDist']
+        ['minify-css', 'bundleDist', 'copy-html-files', 'copy-assets-files', 'connectDist']
     );
 });
 
